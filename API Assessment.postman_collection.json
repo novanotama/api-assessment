@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "21a84c20-fa01-4c06-842f-2686f6678064",
+		"name": "API Assessment",
+		"description": "API Automation POSTMAN Reqres, dont forget to use \"Reqres-novan\" as environments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21523421"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Page 3 success requested\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"3\");\r",
+									"});\r",
+									"pm.test(\"Data on page 3 is null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include([]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{accesToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/users?page=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "Show page 3\n\n[https://prnt.sc/fFaSa325-Ped](https://prnt.sc/fFaSa325-Ped)\n\n[https://prnt.sc/DUrkMDiyzndk](https://prnt.sc/DUrkMDiyzndk)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Detail (Param)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Data with ID 10 success requested\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"10\");\r",
+									"});\r",
+									"pm.test(\"Email is byron.fields@reqres.in \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"byron.fields@reqres.in\");\r",
+									"});\r",
+									"pm.test(\"first_name is Byron \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Byron\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{accesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"10"
+							]
+						},
+						"description": "Show user with ID 10\n\n[https://prnt.sc/oueeaFqNUMpb](https://prnt.sc/oueeaFqNUMpb)\n\n[https://prnt.sc/kq1uuLn7BMQ0](https://prnt.sc/kq1uuLn7BMQ0)"
+					},
+					"response": []
+				}
+			],
+			"description": "1. Get User from page 3.\n2. Get a Single User with ID 10.\n    \n\n[https://prnt.sc/z6c9NqISLyx8](https://prnt.sc/z6c9NqISLyx8)"
+		},
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register Successfull",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ID success created\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"4\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches Token Expected = QpwL5tke4Pnpja7X4\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{accesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Register successfull\n\n[https://prnt.sc/NX1gFQMw8Bmc](https://prnt.sc/NX1gFQMw8Bmc)\n\n[https://prnt.sc/1RQ3arVP0SxR](https://prnt.sc/1RQ3arVP0SxR)"
+					},
+					"response": []
+				},
+				{
+					"name": "Register Failed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message Missing password is existed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Missing password\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{accesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sydney@fife\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Register Failed\n\n[https://prnt.sc/Q_-LK1SXY4D](https://prnt.sc/Q_-LK1SXY4D)_\n\n[https://prnt.sc/9IprrjlOWFIA](https://prnt.sc/9IprrjlOWFIA)"
+					},
+					"response": []
+				}
+			],
+			"description": "1. Register successful.\n2. Register Failed.\n    \n\n[https://prnt.sc/z6c9NqISLyx8](https://prnt.sc/z6c9NqISLyx8)"
+		}
+	]
+}
